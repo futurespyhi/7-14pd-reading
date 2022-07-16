@@ -1,0 +1,14 @@
+import pandas as pd
+# 读取朝阳永续csv文件
+all_fund_nav = pd.read_csv('all_fund_nav.csv')
+all_fund_nav
+# 读取excel文件
+excel_open = pd.read_excel('开源库补充.xlsx')
+code = []
+for i in excel_open['产品名称']:
+    find_ID = all_fund_nav[all_fund_nav['基金简称'].str.contains(i)]['机构ID']
+    if len(find_ID) == 0:
+        code.append('未找到')
+    else:
+        code.append(find_ID.iloc[0])
+code
